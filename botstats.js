@@ -25,7 +25,11 @@ module.exports = function( token ) {
                 'Authorization': 'Bearer ' + token
             }
         }
-        request(options)
+        request(options, function(error, result){
+            if (error){
+                console.log("error", error)
+            }
+        })
         next();
     }, 
     send: function (event, next) {
@@ -56,7 +60,11 @@ module.exports = function( token ) {
                 'Authorization': 'Bearer ' + token
             }
         }
-        request(options)
+        request(options, function(error, result){
+            if (error){
+                console.log("error", error)
+            }
+        })
         next();
     }
 
