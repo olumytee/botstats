@@ -1,11 +1,15 @@
 # botstats
 
-Requires request > 2.7
+npm install botstats --save
 
-const token = "hdhdhhdh"
+// obtain token from https://alpha.botstats.co
 
-var botstats = require('botstats')(token)
+const token = process.env.BOTSATS_TOKEN || "really-long-token"
 
-let bot = new builder.UniversalBot(connector);
+const botstats = require('botstats')(token)
 
+// assuming your bot is initialized like this
+var bot = new builder.UniversalBot(connector)
+
+// tell bot to use botstats
 bot.use(botstats)

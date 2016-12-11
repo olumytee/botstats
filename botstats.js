@@ -1,5 +1,3 @@
-// this is to be converted into an npm module
-
 var request = require('request');
 
 // production
