@@ -1,6 +1,6 @@
 {
   "name": "botstats",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Middleware for botframework",
   "main": "botstats.js",
   "scripts": {
