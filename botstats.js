@@ -14,9 +14,9 @@ module.exports = function( token ) {
         })
 
         var options = {
-            host: 'api.botstats.co/api/bot',
+            host: 'api.botstats.co',
             port: null,
-            path: '/post',
+            path: '/api/bot/post',
             method: 'POST',
             headers: {
                 'authorization': 'Bearer ' + token,
@@ -51,9 +51,9 @@ module.exports = function( token ) {
             });
 
         var options = {
-            host: 'api.botstats.co/api/bot',
+            host: 'api.botstats.co',
             port: null,
-            path: '/post',
+            path: '/api/bot/post',
             method: 'POST',
             headers: {
                 'authorization': 'Bearer ' + token,
