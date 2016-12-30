@@ -31,6 +31,10 @@ module.exports = function( token ) {
                 console.log("body: " + chunk);
             });
         });
+        
+        req.on('error', (e) => {
+            console.log(`problem with request: ${e.message}`);
+        });
 
         req.write(data);
         req.end();
@@ -63,6 +67,10 @@ module.exports = function( token ) {
             res.on('data', function (chunk) {
                 console.log("body: " + chunk);
             });
+        });
+
+        req.on('error', (e) => {
+            console.log(`problem with request: ${e.message}`);
         });
 
         req.write(data);
