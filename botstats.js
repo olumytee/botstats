@@ -1,68 +1,72 @@
-var request = require('request');
+var querystring = require('querystring');
+var http = require('https');
 
-// production
-var url = 'https://api.botstats.co/api/bot/post';
 
 module.exports = function( token ) {
     return { 
     receive: function (event, next) {    
-        var sendData = {
+        var data = querystring.stringify({
             source: event.source,
             type: "incoming",
             profile: event.user,
             conversation: event.address.conversation,
             message: event.text,
-        }
+        })
 
         var options = {
-            method: 'post',
-            body: sendData,
-            json: true,
-            url: url,
+            host: 'https://api.botstats.co/api/bot',
+            port: null,
+            path: '/post',
+            method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + token
+                'authorization': 'Bearer ' + token,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(data)
             }
-        }
-        request(options, function(error, result){
-            if (error){
-                console.log("error", error)
-            }
-        })
+        };
+
+        var req = http.request(options, function(res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                console.log("body: " + chunk);
+            });
+        });
+
+        req.write(data);
+        req.end();
         next();
     }, 
     send: function (event, next) {
 
-        var sendData = {
-            source: event.source,
-            type: "outgoing",
-            profile: event.address.user,
-            conversation: event.address.conversation,
-            message: messageType(),
-        }
+        var data = querystring.stringify({
+                        source: event.source,
+                        type: "outgoing",
+                        profile: event.address.user,
+                        conversation: event.address.conversation,
+                        message: messageType()
+            });
 
-        function messageType() {
-            if (event.text) {
-                return event.text
-            } else if ( event.attachments) {
-                return "Sent Attachments"
-            } else {
-                return "Unknown message type"
-            }
-        }
         var options = {
-            method: 'post',
-            body: sendData,
-            json: true,
-            url: url,
+            host: 'https://api.botstats.co/api/bot',
+            port: null,
+            path: '/post',
+            method: 'POST',
             headers: {
-                'Authorization': 'Bearer ' + token
+                'authorization': 'Bearer ' + token,
+                'Content-Type': 'application/x-www-form-urlencoded',
+                'Content-Length': Buffer.byteLength(data)
             }
-        }
-        request(options, function(error, result){
-            if (error){
-                console.log("error", error)
-            }
-        })
+        };
+
+        var req = http.request(options, function(res) {
+            res.setEncoding('utf8');
+            res.on('data', function (chunk) {
+                console.log("body: " + chunk);
+            });
+        });
+
+        req.write(data);
+        req.end();
         next();
     }
 
