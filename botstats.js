@@ -14,7 +14,7 @@ module.exports = function( token ) {
         })
 
         var options = {
-            host: 'https://api.botstats.co/api/bot',
+            host: 'api.botstats.co/api/bot',
             port: null,
             path: '/post',
             method: 'POST',
@@ -31,7 +31,7 @@ module.exports = function( token ) {
                 console.log("body: " + chunk);
             });
         });
-        
+
         req.on('error', (e) => {
             console.log(`problem with request: ${e.message}`);
         });
@@ -51,7 +51,7 @@ module.exports = function( token ) {
             });
 
         var options = {
-            host: 'https://api.botstats.co/api/bot',
+            host: 'api.botstats.co/api/bot',
             port: null,
             path: '/post',
             method: 'POST',

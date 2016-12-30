@@ -1,13 +1,10 @@
 {
   "name": "botstats",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Middleware for botframework",
   "main": "botstats.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "dependencies": {
-    "request": "^2.75.0"
   },
   "repository": {
     "type": "git",
