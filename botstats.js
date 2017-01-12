@@ -42,6 +42,17 @@ module.exports = function( token ) {
     }, 
     send: function (event, next) {
 
+        
+        function messageType() {
+        if (event.text) {
+                return event.text
+           } else if ( event.attachments) {
+                return "Sent Attachments"
+            } else {
+                return "Unknown message type"
+            }
+        }
+
         var data = querystring.stringify({
                         source: event.source,
                         type: "outgoing",
