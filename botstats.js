@@ -8,10 +8,13 @@ module.exports = function( token ) {
         var data = querystring.stringify({
             source: event.source,
             type: "incoming",
-            profile: event.user,
-            conversation: event.address.conversation,
+            profile: JSON.stringify(event.user),
+            conversation: JSON.stringify(event.address.conversation),
             message: event.text,
         })
+
+
+        
 
         var options = {
             host: 'api.botstats.co',
@@ -56,8 +59,8 @@ module.exports = function( token ) {
         var data = querystring.stringify({
                         source: event.source,
                         type: "outgoing",
-                        profile: event.address.user,
-                        conversation: event.address.conversation,
+                        profile: JSON.stringify(event.address.user),
+                        conversation: JSON.stringify(event.address.conversation),
                         message: messageType()
             });
 
